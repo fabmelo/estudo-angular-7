@@ -1,5 +1,7 @@
 # Finansys
 
+Project developed to study advanced features of Angular 7. The project is about a financial control application.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
 ## Development server
