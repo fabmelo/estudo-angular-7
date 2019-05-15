@@ -1,3 +1,63 @@
-<p>
-  category-list works!
-</p>
+<nav aria-label="breadcrumb" class="mb-4">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/']">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Categorias</li>
+  </ol>
+</nav>
+
+<div class="row mb-4">
+  <div class="col-md">
+    <h1 class="h3 border-left pl-2">Categorias</h1>
+  </div>
+  <div class="col-md">
+    <a routerLink="new" class="btn btn-success float-right" role="button">
+      + Nova Categoria
+    </a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md">
+
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr class="bg-dark text-light">
+          <th>Categoria</th>
+          <th class="text-right">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="align-middle">
+            <strong>Lazer</strong><br>
+            <small>Cinema, parque, praia, etc</small>
+          </td>
+          <td class="align-middle text-right">
+            <a [routerLink]="[12, 'edit']" class="btn btn-outline-info btn-sm mr-2" role="button">Editar</a>
+            <button (click)="onDelete()" class="btn btn-outline-danger btn-sm ml-2">Excluir</button>
+          </td>
+        </tr>
+        <tr>
+          <td class="align-middle">
+            <strong>Lazer</strong><br>
+            <small>Cinema, parque, praia, etc</small>
+          </td>
+          <td class="align-middle text-right">
+            <a [routerLink]="[12, 'edit']" class="btn btn-outline-info btn-sm mr-2" role="button">Editar</a>
+            <button (click)="onDelete()" class="btn btn-outline-danger btn-sm ml-2">Excluir</button>
+          </td>
+        </tr>
+        <tr>
+          <td class="align-middle">
+            <strong>Lazer</strong><br>
+            <small>Cinema, parque, praia, etc</small>
+          </td>
+          <td class="align-middle text-right">
+            <a [routerLink]="[12, 'edit']" class="btn btn-outline-info btn-sm mr-2" role="button">Editar</a>
+            <button (click)="onDelete()" class="btn btn-outline-danger btn-sm ml-2">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
