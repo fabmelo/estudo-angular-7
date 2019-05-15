@@ -1,4 +1,4 @@
-# Finansys
+# FINAN$I$
 
 Project developed to study advanced features of Angular 7. The project is about a financial control application.
 
