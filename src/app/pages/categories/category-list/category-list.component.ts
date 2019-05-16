@@ -1,5 +1,12 @@
+import { element } from 'protractor';
 // Angular
 import { Component, OnInit } from '@angular/core';
+
+// Model
+import { Category } from './../shared/category.model';
+
+// Service
+import { CategoryService } from './../shared/category.service';
 
 @Component({
   selector: 'app-category-list',
@@ -7,9 +14,47 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./category-list.component.scss']
 })
 export class CategoryListComponent implements OnInit {
-  constructor() {}
+  categories: Category[] = [];
 
-  ngOnInit() {}
+  constructor(private categoryService: CategoryService) {}
 
-  onDelete() {}
+  ngOnInit() {
+    this.onGetAll();
+  }
+
+  /**
+   * Carrega todos os registros
+   * @returns void
+   */
+  onGetAll(): void {
+    this.categoryService.getAll().subscribe(
+      (categories: Category[]) => {
+        this.categories = categories;
+      },
+      (err: Error) => {
+        console.error('Erro: ', err.message);
+      }
+    );
+  }
+
+  /**
+   * Exclui um registro
+   * @param category: Category
+   * @returns void
+   */
+  onDelete(category: Category): void {
+    const shouldDelete = confirm('Deseja realmente excluir este registro?');
+
+    if (shouldDelete) {
+      this.categoryService.delete(category.id).subscribe(
+        () => {
+          this.categories = this.categories.filter(element => element != category);
+          console.log('Sucesso');
+        },
+        (err: Error) => {
+          console.error('Erro: ', err.message);
+        }
+      );
+    }
+  }
 }

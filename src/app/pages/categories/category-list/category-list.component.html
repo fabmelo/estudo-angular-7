@@ -27,36 +27,18 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+
+        <tr *ngFor="let category of categories">
           <td class="align-middle">
-            <strong>Lazer</strong><br>
-            <small>Cinema, parque, praia, etc</small>
+            <strong>{{ category.name }}</strong><br>
+            <small>{{ category.description }}</small>
           </td>
           <td class="align-middle text-right">
-            <a [routerLink]="[12, 'edit']" class="btn btn-outline-info btn-sm mr-2" role="button">Editar</a>
-            <button (click)="onDelete()" class="btn btn-outline-danger btn-sm ml-2">Excluir</button>
+            <a [routerLink]="[category.id, 'edit']" class="btn btn-outline-info btn-sm mr-2" role="button">Editar</a>
+            <button (click)="onDelete(category)" class="btn btn-outline-danger btn-sm ml-2">Excluir</button>
           </td>
         </tr>
-        <tr>
-          <td class="align-middle">
-            <strong>Lazer</strong><br>
-            <small>Cinema, parque, praia, etc</small>
-          </td>
-          <td class="align-middle text-right">
-            <a [routerLink]="[12, 'edit']" class="btn btn-outline-info btn-sm mr-2" role="button">Editar</a>
-            <button (click)="onDelete()" class="btn btn-outline-danger btn-sm ml-2">Excluir</button>
-          </td>
-        </tr>
-        <tr>
-          <td class="align-middle">
-            <strong>Lazer</strong><br>
-            <small>Cinema, parque, praia, etc</small>
-          </td>
-          <td class="align-middle text-right">
-            <a [routerLink]="[12, 'edit']" class="btn btn-outline-info btn-sm mr-2" role="button">Editar</a>
-            <button (click)="onDelete()" class="btn btn-outline-danger btn-sm ml-2">Excluir</button>
-          </td>
-        </tr>
+
       </tbody>
     </table>
   </div>
