@@ -9,7 +9,7 @@ import { Category } from './../shared/category.model';
 import { CategoryService } from './../shared/category.service';
 
 // FontAwesome
-import { faPlus, faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-category-list',
@@ -56,7 +56,8 @@ export class CategoryListComponent implements OnInit {
     if (shouldDelete) {
       this.categoryService.delete(category.id).subscribe(
         () => {
-          this.categories = this.categories.filter(element => element != category);
+          // tslint:disable-next-line: no-shadowed-variable
+          this.categories = this.categories.filter(element => element !== category);
           console.log('Sucesso');
         },
         (err: Error) => {

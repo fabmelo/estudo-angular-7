@@ -21,7 +21,7 @@
   <div class="col-md">
 
     <!-- formulário -->
-    <form [formGroup]="form">
+    <form [formGroup]="form" (submit)="onSubmit()">
 
       <div class="card">
         <div class="card-header">
@@ -33,19 +33,27 @@
             <div class="form-group col-md-4">
               <label for="name">Nome</label>
               <input type="text" class="form-control" id="name" formControlName="name">
+              <div class="text-danger">
+                <div *ngIf="name.dirty && name.hasError('required')">Obrigatório</div>
+                <div *ngIf="name.dirty && name.hasError('minlength')">Ao menos 2 caracteres</div>
+              </div>
             </div>
             <!--/ Nome -->
             <!-- Descrição -->
             <div class="form-group col-md-8">
               <label for="description">Descrição</label>
               <input type="text" class="form-control" id="description" formControlName="description">
+              <div class="text-danger">
+                <div *ngIf="description.dirty && description.hasError('required')">Obrigatório</div>
+                <div *ngIf="description.dirty && description.hasError('minlength')">Ao menos 2 caracteres</div>
+              </div>
             </div>
             <!--/ Descrição -->
           </div>
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary float-right mt-3">
+      <button [disabled]="submittingForm || form.invalid" type="submit" class="btn btn-primary float-right mt-3">
         <fa-icon [icon]="faSave"></fa-icon>&nbsp;Salvar
       </button>
     </form>
