@@ -53,6 +53,17 @@
         </div>
       </div>
 
+      <!-- Erros no servidor -->
+      <div class="alert alert-danger mt-4" *ngIf="serverErrorMessages">
+        <strong>
+          <fa-icon [icon]="faBomb"></fa-icon>&nbsp;Erro no Servidor:
+        </strong>
+        <ul class="list-group list-group-flush mt-3">
+          <li class="list-group-item" *ngFor="let error of serverErrorMessages">{{ error }}</li>
+        </ul>
+      </div>
+      <!--/ Erros no servidor -->
+
       <button [disabled]="submittingForm || form.invalid" type="submit" class="btn btn-primary float-right mt-3">
         <fa-icon [icon]="faSave"></fa-icon>&nbsp;Salvar
       </button>

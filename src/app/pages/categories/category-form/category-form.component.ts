@@ -10,7 +10,7 @@ import { Category } from './../shared/category.model';
 import { CategoryService } from './../shared/category.service';
 
 // FontAwesome
-import { faChevronCircleLeft, faSave } from '@fortawesome/free-solid-svg-icons';
+import { faChevronCircleLeft, faSave, faBomb } from '@fortawesome/free-solid-svg-icons';
 import { switchMap } from 'rxjs/operators';
 
 // Others
@@ -25,6 +25,7 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
   // FontAwesome
   faChevronCircleLeft = faChevronCircleLeft;
   faSave = faSave;
+  faBomb = faBomb;
 
   // Configs Initials
   currentAction: string;

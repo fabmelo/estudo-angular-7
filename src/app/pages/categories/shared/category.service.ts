@@ -59,7 +59,7 @@ export class CategoryService {
 
   /**
    * Envia ao back-end parâmetros para atualização de um registro
-   * @param category
+   * @param category: Category
    * @returns Observable<Category>
    */
   update(category: Category): Observable<Category> {
@@ -72,7 +72,7 @@ export class CategoryService {
 
   /**
    * Envia ao back-end parâmetros para exclusão de um registro
-   * @param id
+   * @param id: number
    * @returns Observable<any>
    */
   delete(id: number): Observable<any> {
