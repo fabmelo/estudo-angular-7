@@ -2,13 +2,13 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a [routerLink]="['/']">Home</a></li>
     <li class="breadcrumb-item"><a [routerLink]="['/categories']">Categorias</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Formulário de Categoria</li>
+    <li class="breadcrumb-item active" aria-current="page">{{ pageTitle }}</li>
   </ol>
 </nav>
 
 <div class="row mb-4">
   <div class="col-md">
-    <h1 class="h3 border-left pl-2">Formulário de Categoria</h1>
+    <h1 class="h3 border-left pl-2">{{ pageTitle }}</h1>
   </div>
   <div class="col-md">
     <a routerLink="/categories" class="btn btn-light float-right" role="button">
@@ -21,7 +21,7 @@
   <div class="col-md">
 
     <!-- formulário -->
-    <form>
+    <form [formGroup]="form">
 
       <div class="card">
         <div class="card-header">
@@ -32,13 +32,13 @@
             <!-- Nome -->
             <div class="form-group col-md-4">
               <label for="name">Nome</label>
-              <input type="text" class="form-control" id="name">
+              <input type="text" class="form-control" id="name" formControlName="name">
             </div>
             <!--/ Nome -->
             <!-- Descrição -->
             <div class="form-group col-md-8">
               <label for="description">Descrição</label>
-              <input type="text" class="form-control" id="description">
+              <input type="text" class="form-control" id="description" formControlName="description">
             </div>
             <!--/ Descrição -->
           </div>
