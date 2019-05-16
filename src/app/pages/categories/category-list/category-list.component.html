@@ -11,7 +11,7 @@
   </div>
   <div class="col-md">
     <a routerLink="new" class="btn btn-success float-right" role="button">
-      + Nova Categoria
+      <fa-icon [icon]="faPlus"></fa-icon> Nova Categoria
     </a>
   </div>
 </div>
@@ -34,8 +34,12 @@
             <small>{{ category.description }}</small>
           </td>
           <td class="align-middle text-right">
-            <a [routerLink]="[category.id, 'edit']" class="btn btn-outline-info btn-sm mr-2" role="button">Editar</a>
-            <button (click)="onDelete(category)" class="btn btn-outline-danger btn-sm ml-2">Excluir</button>
+            <a [routerLink]="[category.id, 'edit']" class="btn btn-outline-info btn-sm mr-2" role="button">
+              <fa-icon [icon]="faEdit"></fa-icon>&nbsp;Editar
+            </a>
+            <button (click)="onDelete(category)" class="btn btn-outline-danger btn-sm ml-2">
+              <fa-icon [icon]="faTrashAlt"></fa-icon>&nbsp;Excluir
+            </button>
           </td>
         </tr>
 

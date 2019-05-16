@@ -8,12 +8,20 @@ import { Category } from './../shared/category.model';
 // Service
 import { CategoryService } from './../shared/category.service';
 
+// FontAwesome
+import { faPlus, faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons'
+
 @Component({
   selector: 'app-category-list',
   templateUrl: './category-list.component.html',
   styleUrls: ['./category-list.component.scss']
 })
 export class CategoryListComponent implements OnInit {
+  // FontAwesome
+  faPlus = faPlus;
+  faTrashAlt = faTrashAlt;
+  faEdit = faEdit;
+
   categories: Category[] = [];
 
   constructor(private categoryService: CategoryService) {}

@@ -1,3 +1,55 @@
-<p>
-  category-form works!
-</p>
+<nav aria-label="breadcrumb" class="mb-4">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/']">Home</a></li>
+    <li class="breadcrumb-item"><a [routerLink]="['/categories']">Categorias</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Formulário de Categoria</li>
+  </ol>
+</nav>
+
+<div class="row mb-4">
+  <div class="col-md">
+    <h1 class="h3 border-left pl-2">Formulário de Categoria</h1>
+  </div>
+  <div class="col-md">
+    <a routerLink="/categories" class="btn btn-light float-right" role="button">
+      <fa-icon [icon]="faChevronCircleLeft"></fa-icon> Voltar
+    </a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md">
+
+    <!-- formulário -->
+    <form>
+
+      <div class="card">
+        <div class="card-header">
+          Informações sobre a Categoria
+        </div>
+        <div class="card-body">
+          <div class="form-row">
+            <!-- Nome -->
+            <div class="form-group col-md-4">
+              <label for="name">Nome</label>
+              <input type="text" class="form-control" id="name">
+            </div>
+            <!--/ Nome -->
+            <!-- Descrição -->
+            <div class="form-group col-md-8">
+              <label for="description">Descrição</label>
+              <input type="text" class="form-control" id="description">
+            </div>
+            <!--/ Descrição -->
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary float-right mt-3">
+        <fa-icon [icon]="faSave"></fa-icon>&nbsp;Salvar
+      </button>
+    </form>
+    <!--/ formulário -->
+
+  </div>
+</div>
