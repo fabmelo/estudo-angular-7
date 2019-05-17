@@ -28,27 +28,99 @@
           Informações sobre o Lançamento
         </div>
         <div class="card-body">
+
           <div class="form-row">
-            <!-- Nome -->
-            <div class="form-group col-md-4">
-              <label for="name">Nome</label>
+
+            <!-- Tipo -->
+            <div class="form-group col-md-2">
+              <label for="type">Tipo</label>
+              <select name="type" id="type" formControlName="type" class="form-control">
+                <option *ngFor="let type of typeOptions" [value]="type.value">{{ type.text }}</option>
+              </select>
+              <div class="text-danger">
+                <div *ngIf="type.dirty && type.hasError('required')">Obrigatório</div>
+              </div>
+            </div>
+            <!--/ Tipo -->
+
+            <!-- Categoria -->
+            <div class="form-group col-md-2">
+              <label for="categoryId">Categoria</label>
+              <select name="categoryId" id="categoryId" formControlName="categoryId" class="form-control">
+                <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+              </select>
+              <div class="text-danger">
+                <div *ngIf="categoryId.dirty && categoryId.hasError('required')">Obrigatório</div>
+              </div>
+            </div>
+            <!--/ Categoria -->
+
+            <!-- Lançamento -->
+            <div class="form-group col-md-6">
+              <label for="name">Lançamento</label>
               <input type="text" class="form-control" id="name" formControlName="name">
               <div class="text-danger">
                 <div *ngIf="name.dirty && name.hasError('required')">Obrigatório</div>
                 <div *ngIf="name.dirty && name.hasError('minlength')">Ao menos 2 caracteres</div>
               </div>
             </div>
-            <!--/ Nome -->
+            <!--/ Lançamento -->
+
+            <!-- Valor -->
+            <div class="form-group col-md-2">
+              <label for="amount">Valor</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">R$</div>
+                </div>
+                <input [imask]="imaskConfig" type="text" class="form-control text-right" id="amount"
+                  formControlName="amount">
+              </div>
+              <div class="text-danger">
+                <div *ngIf="amount.dirty && amount.hasError('required')">Obrigatório</div>
+              </div>
+            </div>
+            <!--/ Valor -->
+
+          </div>
+
+          <div class="form-row">
+
             <!-- Descrição -->
             <div class="form-group col-md-8">
               <label for="description">Descrição</label>
               <input type="text" class="form-control" id="description" formControlName="description">
-              <div class="text-danger">
-                <div *ngIf="description.dirty && description.hasError('required')">Obrigatório</div>
-                <div *ngIf="description.dirty && description.hasError('minlength')">Ao menos 2 caracteres</div>
-              </div>
             </div>
             <!--/ Descrição -->
+
+            <!-- Pago -->
+            <div class="form-group col-md-2">
+              <label>Pago</label><br>
+              <div class="btn-group">
+                <label (click)="form.get('paid').setValue(true)" [class.active]="form.get('paid').value === true"
+                  class="btn btn-outline-info">Pago</label>
+                <label (click)="form.get('paid').setValue(false)" [class.active]="form.get('paid').value === false"
+                  class="btn btn-outline-info">Pendente</label>
+              </div>
+              <div class="text-danger">
+                <div *ngIf="paid.dirty && paid.hasError('required')">Obrigatório</div>
+              </div>
+            </div>
+            <!--/ Pago -->
+
+            <!-- Data -->
+            <div class="form-group col-md-2">
+              <label for="date">Data</label><br>
+              <p-calendar name="date" id="date" inputStyleClass="form-control" formControlName="date" dataType="string"
+                dateFormat="dd/mm/yy" [locale]="ptBR" [showButtonBar]="true" appendTo="body">
+                <!--[showIcon]="true" -->
+              </p-calendar>
+              <div class="text-danger">
+                <div *ngIf="date.dirty && date.hasError('required')">Obrigatório</div>
+              </div>
+            </div>
+            <!--/ Data -->
+
           </div>
         </div>
       </div>

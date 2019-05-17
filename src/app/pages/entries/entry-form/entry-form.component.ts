@@ -4,9 +4,11 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 
 // Model
+import { Category } from './../../categories/shared/category.model';
 import { Entry } from './../shared/entry.model';
 
 // Service
+import { CategoryService } from './../../categories/shared/category.service';
 import { EntryService } from './../shared/entry.service';
 
 // FontAwesome
@@ -34,12 +36,62 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   serverErrorMessages: string[] = null;
   submittingForm: boolean = false;
   entry: Entry = new Entry();
+  categories: Array<Category>;
+
+  // Mascara
+  imaskConfig = {
+    mask: Number,
+    scale: 2,
+    thousandsSeparator: '',
+    padFractionalSeros: true,
+    normalizeZeros: true,
+    radix: ','
+  };
+
+  // Calendário
+  ptBR = {
+    firstDayOfWeek: 0,
+    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+    dayNamesMin: ['Do', 'Se', 'Te', 'Qu', 'Qu', 'Se', 'Sa'],
+    monthNames: [
+      'Janeiro',
+      'Fevereiro',
+      'Março',
+      'Abril',
+      'Maio',
+      'Junho',
+      'Julho',
+      'Agosto',
+      'Setembro',
+      'Outubro',
+      'Novembro',
+      'Dezembro'
+    ],
+    monthNamesShort: [
+      'Jan',
+      'Fev',
+      'Mar',
+      'Abr',
+      'Mai',
+      'Jun',
+      'Jul',
+      'Ago',
+      'Set',
+      'Out',
+      'Nov',
+      'Dez'
+    ],
+    today: 'Hoje',
+    clear: 'Limpar'
+  };
 
   constructor(
     private entryService: EntryService,
     private route: ActivatedRoute,
     private router: Router,
-    private formBuild: FormBuilder
+    private formBuild: FormBuilder,
+    private categoryService: CategoryService
   ) {}
 
   // =======================================================================================
@@ -54,6 +106,7 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     this.setCurrentAction();
     this.createForm();
     this.loadEntry();
+    this.loadCategories();
   }
 
   /**
@@ -77,10 +130,63 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     this.currentAction === 'new' ? this.onCreate() : this.onUpdate();
   }
 
+  /**
+   * Recupera e monta objeto com opções de tipo
+   */
+  get typeOptions(): Array<any> {
+    return Object.entries(Entry.types).map(([value, text]) => {
+      return {
+        text,
+        value
+      };
+    });
+  }
+
+  /**
+   * Representação do campo type
+   */
+  get type(): FormControl {
+    return this.form.get('type') as FormControl;
+  }
+
+  /**
+   * Representação do campo date
+   */
+  get date(): FormControl {
+    return this.form.get('date') as FormControl;
+  }
+
+  /**
+   * Representação do campo amount
+   */
+  get amount(): FormControl {
+    return this.form.get('amount') as FormControl;
+  }
+
+  /**
+   * Representação do campo paid
+   */
+  get paid(): FormControl {
+    return this.form.get('paid') as FormControl;
+  }
+
+  /**
+   * Representação do campo categoryId
+   */
+  get categoryId(): FormControl {
+    return this.form.get('categoryId') as FormControl;
+  }
+
+  /**
+   * Representação do campo name
+   */
   get name(): FormControl {
     return this.form.get('name') as FormControl;
   }
 
+  /**
+   * Representação do campo description
+   */
   get description(): FormControl {
     return this.form.get('description') as FormControl;
   }
@@ -88,6 +194,20 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   // =======================================================================================
   // =================================== PRIVATE METHODS ===================================
   // =======================================================================================
+
+  /**
+   * Carrega a lista de categorias
+   */
+  private loadCategories() {
+    this.categoryService.getAll().subscribe(
+      (categories: Category[]) => {
+        this.categories = categories;
+      },
+      (err: Error) => {
+        toastr.error(`Erro: ${err.message}`);
+      }
+    );
+  }
 
   /**
    * Define o título da página
@@ -130,10 +250,10 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
       id: [null],
       name: [null, [Validators.required, Validators.minLength(2)]],
       description: [null],
-      type: [null, [Validators.required]],
+      type: ['expense', [Validators.required]],
       amount: [null, [Validators.required]],
       date: [null, [Validators.required]],
-      paid: [null, [Validators.required]],
+      paid: [true, [Validators.required]],
       categoryId: [null, [Validators.required]]
     });
   }
