@@ -11,13 +11,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // Components
 import { EntryListComponent } from './entry-list/entry-list.component';
-//import { EntryFormComponent } from './entry-form/entry-form.component';
+import { EntryFormComponent } from './entry-form/entry-form.component';
 
 @NgModule({
-  declarations: [
-    EntryListComponent
-    //EntryFormComponent
-  ],
+  declarations: [EntryListComponent, EntryFormComponent],
   imports: [CommonModule, EntriesRoutingModule, FontAwesomeModule, ReactiveFormsModule]
 })
 export class EntriesModule {}

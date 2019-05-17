@@ -7,6 +7,9 @@ import { Entry } from './../shared/entry.model';
 // Service
 import { EntryService } from './../shared/entry.service';
 
+// Others
+import toastr from 'toastr';
+
 // FontAwesome
 import {
   faPlus,
@@ -47,7 +50,7 @@ export class EntryListComponent implements OnInit {
         this.entries = entries;
       },
       (err: Error) => {
-        console.error('Erro: ', err.message);
+        toastr.error(`Erro: ${err.message}`);
       }
     );
   }
@@ -65,10 +68,10 @@ export class EntryListComponent implements OnInit {
         () => {
           // tslint:disable-next-line: no-shadowed-variable
           this.entries = this.entries.filter(element => element !== entry);
-          console.log('Sucesso');
+          toastr.success('Successo');
         },
         (err: Error) => {
-          console.error('Erro: ', err.message);
+          toastr.error(`Erro: ${err.message}`);
         }
       );
     }

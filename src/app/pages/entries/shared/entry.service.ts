@@ -9,6 +9,9 @@ import { map, catchError, flatMap } from 'rxjs/operators';
 // Model
 import { Entry } from './entry.model';
 
+// Others
+import toastr from 'toastr';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -113,7 +116,7 @@ export class EntryService {
    * @returns Observable<any>
    */
   private handleError(error: any): Observable<any> {
-    console.log('ERRO NA REQUISIÇÃO: ', error);
+    toastr.error(`Erro na Requisição: ${error}`);
     return throwError(error);
   }
 }
