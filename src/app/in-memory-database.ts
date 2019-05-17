@@ -65,7 +65,7 @@ export class InMemoryDatabase implements InMemoryDbService {
         id: 5,
         name: 'Salário',
         description: 'Salário do mês',
-        type: 'renevue',
+        type: 'revenue',
         amount: 7000.0,
         date: '10/05/2019',
         paid: true,

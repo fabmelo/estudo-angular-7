@@ -47,7 +47,7 @@ export class EntryListComponent implements OnInit {
   onGetAll(): void {
     this.entryService.getAll().subscribe(
       (entries: Entry[]) => {
-        this.entries = entries;
+        this.entries = entries.sort((a, b) => b.id - a.id);
       },
       (err: Error) => {
         toastr.error(`Erro: ${err.message}`);

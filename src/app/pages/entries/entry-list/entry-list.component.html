@@ -41,7 +41,7 @@
           </td>
           <td class="align-middle text-right">
             <strong
-              [ngClass]="{'text-success': entry.type === 'renevue', 'text-danger': entry.type === 'expense'}">{{entry.amount | currency: 'BRL'}}</strong><br>
+              [ngClass]="{'text-success': entry.type === 'revenue', 'text-danger': entry.type === 'expense'}">{{entry.amount | currency: 'BRL'}}</strong><br>
             <span class="badge badge-light">
               <fa-icon [icon]="(entry.paid) ? faThumbsUp : faThumbsDown"></fa-icon>&nbsp;
               {{ entry.paidText }}
