@@ -1,0 +1,63 @@
+<nav aria-label="breadcrumb" class="mb-4">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/']">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Lançamentos</li>
+  </ol>
+</nav>
+
+<div class="row mb-4">
+  <div class="col-md">
+    <h1 class="h3 border-left pl-2">Lançamentos</h1>
+  </div>
+  <div class="col-md">
+    <a routerLink="new" class="btn btn-success float-right" role="button">
+      <fa-icon [icon]="faPlus"></fa-icon> Novo Lançamento
+    </a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md">
+
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr class="bg-dark text-light">
+          <th>Lançamento</th>
+          <th>Categoria</th>
+          <th class="text-right">Valor</th>
+          <th class="text-right">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let entry of entries">
+          <td class="align-middle">
+            <strong>{{ entry.name }}</strong><br>
+            <small class="text-success">{{ entry.date }}</small><br>
+            <small *ngIf="entry.description">{{ entry.description }}</small>
+          </td>
+          <td class="align-middle">
+            {{entry.category.name}}
+          </td>
+          <td class="align-middle text-right">
+            <strong
+              [ngClass]="{'text-success': entry.type === 'renevue', 'text-danger': entry.type === 'expense'}">{{entry.amount | currency: 'BRL'}}</strong><br>
+            <span class="badge badge-light">
+              <fa-icon [icon]="(entry.paid) ? faThumbsUp : faThumbsDown"></fa-icon>&nbsp;
+              {{ entry.paidText }}
+            </span>
+          </td>
+          <td class="align-middle text-right">
+            <a [routerLink]="[entry.id, 'edit']" class="btn btn-outline-info btn-sm mr-2" role="button">
+              <fa-icon [icon]="faEdit"></fa-icon>&nbsp;Editar
+            </a>
+            <button (click)="onDelete(entry)" class="btn btn-outline-danger btn-sm ml-2">
+              <fa-icon [icon]="faTrashAlt"></fa-icon>&nbsp;Excluir
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
